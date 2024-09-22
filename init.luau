@@ -1,1 +1,1 @@
-return require("src/lib")
+return require("src")
