@@ -1,3 +1,3 @@
 local dirs = require("..")
 
-print(dirs.homeDir())
+print(dirs.downloadDir())
