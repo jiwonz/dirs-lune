@@ -3,6 +3,7 @@
 local process = require("@lune/process")
 local targetOS = process.os
 local types = require("types")
+local pathfs = require("../submodules/pathfs")
 
 local sys: types.Sys? = if targetOS == "windows" then require("win")
 	elseif targetOS == "macos" then require("mac")
@@ -40,7 +41,7 @@ local dirs = {}
 
 	All the examples on this page mentioning `$HOME` use this behavior.
 ]=]
-function dirs.homeDir()
+function dirs.homeDir(): pathfs.Path?
 	return sys.homeDir()
 end
 
@@ -55,7 +56,7 @@ end
 	| macOS   | `$HOME`/Library/Caches              | /Users/Alice/Library/Caches  |
 	| Windows | `{FOLDERID_LocalAppData}`           | C:\Users\Alice\AppData\Local |
 ]=]
-function dirs.cacheDir()
+function dirs.cacheDir(): pathfs.Path?
 	return sys.cacheDir()
 end
 
@@ -70,7 +71,7 @@ end
 	| macOS   | `$HOME`/Library/Application Support   | /Users/Alice/Library/Application Support |
 	| Windows | `{FOLDERID_RoamingAppData}`           | C:\Users\Alice\AppData\Roaming           |
 ]=]
-function dirs.configDir()
+function dirs.configDir(): pathfs.Path?
 	return sys.configDir()
 end
 
@@ -85,7 +86,7 @@ end
 	| macOS   | `$HOME`/Library/Application Support   | /Users/Alice/Library/Application Support |
 	| Windows | `{FOLDERID_LocalAppData}`             | C:\Users\Alice\AppData\Local             |
 ]=]
-function dirs.configLocalDir()
+function dirs.configLocalDir(): pathfs.Path?
 	return sys.configLocalDir()
 end
 
@@ -100,7 +101,7 @@ end
 	| macOS   | `$HOME`/Library/Application Support      | /Users/Alice/Library/Application Support |
 	| Windows | `{FOLDERID_RoamingAppData}`              | C:\Users\Alice\AppData\Roaming           |
 ]=]
-function dirs.dataDir()
+function dirs.dataDir(): pathfs.Path?
 	return sys.dataDir()
 end
 
@@ -115,7 +116,7 @@ end
 	| macOS   | `$HOME`/Library/Application Support      | /Users/Alice/Library/Application Support |
 	| Windows | `{FOLDERID_LocalAppData}`                | C:\Users\Alice\AppData\Local             |
 ]=]
-function dirs.dataLocalDir()
+function dirs.dataLocalDir(): pathfs.Path?
 	return sys.dataLocalDir()
 end
 
@@ -130,7 +131,7 @@ end
 	| macOS   | –                                                                | –                      |
 	| Windows | –                                                                | –                      |
 ]=]
-function dirs.executableDir()
+function dirs.executableDir(): pathfs.Path?
 	return sys.executableDir()
 end
 
@@ -145,7 +146,7 @@ end
 	| macOS   | `$HOME`/Library/Preferences           | /Users/Alice/Library/Preferences |
 	| Windows | `{FOLDERID_RoamingAppData}`           | C:\Users\Alice\AppData\Roaming   |
 ]=]
-function dirs.preferenceDir()
+function dirs.preferenceDir(): pathfs.Path?
 	return sys.preferenceDir()
 end
 
@@ -163,7 +164,7 @@ end
 	| macOS   | –                  | –               |
 	| Windows | –                  | –               |
 ]=]
-function dirs.runtimeDir()
+function dirs.runtimeDir(): pathfs.Path?
 	return sys.runtimeDir()
 end
 
@@ -182,7 +183,7 @@ end
 	| macOS   | –                                         | –                        |
 	| Windows | –                                         | –                        |
 ]=]
-function dirs.stateDir()
+function dirs.stateDir(): pathfs.Path?
 	return sys.stateDir()
 end
 
@@ -197,7 +198,7 @@ end
 	| macOS   | `$HOME`/Music      | /Users/Alice/Music   |
 	| Windows | `{FOLDERID_Music}` | C:\Users\Alice\Music |
 ]=]
-function dirs.audioDir()
+function dirs.audioDir(): pathfs.Path?
 	return sys.audioDir()
 end
 
@@ -212,7 +213,7 @@ end
 	| macOS   | `$HOME`/Desktop      | /Users/Alice/Desktop   |
 	| Windows | `{FOLDERID_Desktop}` | C:\Users\Alice\Desktop |
 ]=]
-function dirs.desktopDir()
+function dirs.desktopDir(): pathfs.Path?
 	return sys.desktopDir()
 end
 
@@ -227,7 +228,7 @@ end
 	| macOS   | `$HOME`/Documents      | /Users/Alice/Documents   |
 	| Windows | `{FOLDERID_Documents}` | C:\Users\Alice\Documents |
 ]=]
-function dirs.documentDir()
+function dirs.documentDir(): pathfs.Path?
 	return sys.documentDir()
 end
 
@@ -242,7 +243,7 @@ end
 	| macOS   | `$HOME`/Downloads      | /Users/Alice/Downloads   |
 	| Windows | `{FOLDERID_Downloads}` | C:\Users\Alice\Downloads |
 ]=]
-function dirs.downloadDir()
+function dirs.downloadDir(): pathfs.Path?
 	return sys.downloadDir()
 end
 
@@ -257,7 +258,7 @@ end
 	| macOS   | `$HOME/Library/Fonts`                                | /Users/Alice/Library/Fonts     |
 	| Windows | –                                                    | –                              |
 ]=]
-function dirs.fontDir()
+function dirs.fontDir(): pathfs.Path?
 	return sys.fontDir()
 end
 
@@ -272,7 +273,7 @@ end
 	| macOS   | `$HOME`/Pictures      | /Users/Alice/Pictures   |
 	| Windows | `{FOLDERID_Pictures}` | C:\Users\Alice\Pictures |
 ]=]
-function dirs.pictureDir()
+function dirs.pictureDir(): pathfs.Path?
 	return sys.pictureDir()
 end
 
@@ -287,7 +288,7 @@ end
 	| macOS   | `$HOME`/Public        | /Users/Alice/Public |
 	| Windows | `{FOLDERID_Public}`   | C:\Users\Public     |
 ]=]
-function dirs.publicDir()
+function dirs.publicDir(): pathfs.Path?
 	return sys.publicDir()
 end
 
@@ -302,7 +303,7 @@ end
 	| macOS   | –                      | –                                                          |
 	| Windows | `{FOLDERID_Templates}` | C:\Users\Alice\AppData\Roaming\Microsoft\Windows\Templates |
 ]=]
-function dirs.templateDir()
+function dirs.templateDir(): pathfs.Path?
 	return sys.templateDir()
 end
 
@@ -317,7 +318,7 @@ end
 	| macOS   | `$HOME`/Movies      | /Users/Alice/Movies   |
 	| Windows | `{FOLDERID_Videos}` | C:\Users\Alice\Videos |
 ]=]
-function dirs.videoDir()
+function dirs.videoDir(): pathfs.Path?
 	return sys.videoDir()
 end
 
