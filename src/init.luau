@@ -1,3 +1,5 @@
+--!strict
+
 local process = require("@lune/process")
 local targetOS = process.os
 local types = require("types")
