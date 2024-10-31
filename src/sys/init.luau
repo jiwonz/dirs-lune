@@ -1,9 +1,7 @@
---!strict
-
 local process = require("@lune/process")
 local env = process.env
 local targetOS = process.os
-local pathfs = require("../../submodules/pathfs")
+local pathfs = require("../../lune_packages/pathfs")
 local sys = {}
 
 local function homeDir(): pathfs.Path?
@@ -98,8 +96,22 @@ $ptr = [intptr]::Zero\
 		if success then
 			return pathfs.Path.from(value)
 		else
-			return parsePath(defaultKnownFolderPaths[guid])
+			local defaultPath = defaultKnownFolderPaths[guid]
+			if type(defaultPath) == "string" then
+				local parsed = parsePath(defaultPath)
+				if parsed and pathfs.isFile(parsed) then
+					return parsed
+				end
+			elseif type(defaultPath) == "table" then
+				for _, v in defaultPath do
+					local parsed = parsePath(v)
+					if parsed and pathfs.isFile(parsed) then
+						return parsed
+					end
+				end
+			end
 		end
+		return
 	end
 
 	local function knownFolderProfile(): pathfs.Path?

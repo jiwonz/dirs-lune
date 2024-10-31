@@ -1,5 +1,11 @@
 # dirs-lune
-A library for lune that provides config/cache/data paths. heavily inspired (almost port) by [dirs-rs](https://github.com/dirs-dev/dirs-rs)
+A library for lune that provides config/cache/data paths. Heavily inspired (almost port) by [dirs-rs](https://github.com/dirs-dev/dirs-rs)
+
+## Installation
+Install via pesde.
+```sh
+pesde add jiwonz/dirs
+```
 
 ## Limitations
 Since lune cannot do low-level operations and does not have ffi functionality, `dirs-lune` has the following limitations:

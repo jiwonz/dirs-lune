@@ -1,6 +1,4 @@
---!strict
-
-local pathfs = require("../submodules/pathfs")
+local pathfs = require("../lune_packages/pathfs")
 
 export type Sys = {
 	homeDir: () -> (pathfs.Path?),

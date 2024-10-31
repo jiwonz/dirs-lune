@@ -1,6 +1,6 @@
 local KNOWNFOLDERID = require("KNOWNFOLDERID")
 
-local defaultKnownFolderPaths = {}
+local defaultKnownFolderPaths = {} :: { [string]: { string } | string }
 
 -- if default path is table, you should check their element paths all
 defaultKnownFolderPaths[KNOWNFOLDERID.FOLDERID_Desktop] = "%USERPROFILE%\\Desktop"

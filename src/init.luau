@@ -1,9 +1,7 @@
---!strict
-
 local process = require("@lune/process")
 local targetOS = process.os
 local types = require("types")
-local pathfs = require("../submodules/pathfs")
+local pathfs = require("../lune_packages/pathfs")
 
 local sys: types.Sys? = if targetOS == "windows" then require("win")
 	elseif targetOS == "macos" then require("mac")

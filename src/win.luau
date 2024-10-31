@@ -1,5 +1,3 @@
---!strict
-
 local dirsSys = require("sys").windows
 local types = require("types")
 

@@ -1,0 +1,21 @@
+name = "jiwonz/dirs"
+version = "0.1.0"
+target = "lune"
+
+[graph."jiwonz/pathfs"."0.1.0 lune"]
+direct = ["pathfs", { name = "jiwonz/pathfs", version = "^0.1.0" }]
+ty = "standard"
+
+[graph."jiwonz/pathfs"."0.1.0 lune".target]
+environment = "lune"
+lib = "init.luau"
+
+[graph."jiwonz/pathfs"."0.1.0 lune".pkg_ref]
+ref_ty = "pesde"
+name = "jiwonz/pathfs"
+version = "0.1.0"
+index_url = "https://github.com/daimond113/pesde-index"
+
+[graph."jiwonz/pathfs"."0.1.0 lune".pkg_ref.target]
+environment = "lune"
+lib = "init.luau"

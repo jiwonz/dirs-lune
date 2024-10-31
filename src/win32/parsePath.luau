@@ -1,6 +1,4 @@
---!strict
-
-local pathfs = require("../../submodules/pathfs")
+local pathfs = require("../../lune_packages/pathfs")
 local process = require("@lune/process")
 
 --[=[
@@ -8,7 +6,7 @@ Converts win paths including env path into Path object
 
 ex. "%APPDATA%\\Something" -> Path({process.env.APPDATA, "Something"})
 ]=]
-return function(path: string): pathfs.Path
+return function(path: string): pathfs.Path?
 	local p = pathfs.Path.from(path)
 	local components = p:components()
 	local newPath

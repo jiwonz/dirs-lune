@@ -1,9 +1,7 @@
---!strict
-
 local dirsSys = require("sys").linux
 local types = require("types")
 local env = require("@lune/process").env
-local pathfs = require("../submodules/pathfs")
+local pathfs = require("../lune_packages/pathfs")
 
 local function andThen<A, T>(a: A, fn: (A) -> (T), orElse: (() -> (T))?): T?
 	if a then

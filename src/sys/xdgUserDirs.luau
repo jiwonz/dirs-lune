@@ -1,6 +1,4 @@
---!strict
-
-local pathfs = require("../../submodules/pathfs")
+local pathfs = require("../../lune_packages/pathfs")
 local xdgUserDirs = {}
 
 local function splitOnce(bytes: string, separator: string): (string?, string?)
