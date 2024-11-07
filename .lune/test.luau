@@ -1,3 +1,3 @@
-local dirs = require("..")
+local dirs = require("../src")
 
-print(dirs.downloadDir())
+print(dirs.tempDir())
