@@ -334,10 +334,7 @@ local function getTempDir(): string?
     return dir
 end
 
---[=[
-	Returns the path to the user's temp directory.
-]=]
-function dirs.tempDir()
+local function tempDir()
 	if targetOS == "windows" then
 		local path = process.env.TEMP or
 			process.env.TMP or
@@ -351,6 +348,13 @@ function dirs.tempDir()
 	end
 
 	return getTempDir() or "/tmp"
+end
+
+--[=[
+	Returns the path to the user's temp directory.
+]=]
+function dirs.tempDir()
+	return pathfs.Path.from(tempDir())
 end
 
 return dirs

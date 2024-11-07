@@ -1,5 +1,5 @@
 name = "jiwonz/dirs"
-version = "0.1.1"
+version = "0.1.2"
 description = "A library for lune that provides config/cache/data paths. Heavily inspired by dirs-rs"
 authors = ["jiwonz"]
 repository = "https://github.com/jiwonz/dirs-lune/"
