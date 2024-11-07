@@ -2,7 +2,7 @@
 A library for lune that provides config/cache/data paths. Heavily inspired (almost port) by [dirs-rs](https://github.com/dirs-dev/dirs-rs)
 
 ## Installation
-Install via pesde.
+Install via [pesde](https://pesde.daimond113.com/packages/jiwonz/dirs).
 ```sh
 pesde add jiwonz/dirs
 ```
