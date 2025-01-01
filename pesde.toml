@@ -15,3 +15,4 @@ default = "https://github.com/daimond113/pesde-index"
 
 [dependencies]
 pathfs = { name = "jiwonz/pathfs", version = "^0.1.0" }
+greentea = { name = "corecii/greentea", version = "^0.4.10" }

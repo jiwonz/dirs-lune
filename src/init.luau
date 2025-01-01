@@ -2,6 +2,7 @@ local process = require("@lune/process")
 local targetOS = process.os
 local types = require("types")
 local pathfs = require("../lune_packages/pathfs")
+local gt = require("../lune_packages/greentea")
 
 local sys: types.Sys? = if targetOS == "windows" then require("win")
 	elseif targetOS == "macos" then require("mac")
@@ -320,35 +321,7 @@ function dirs.videoDir(): pathfs.Path?
 	return sys.videoDir()
 end
 
-local function getTempDir(): string?
-    local dir = process.env.TMPDIR or process.env.TMP or process.env.TEMP
-
-    if not dir or dir == "" then
-        return nil
-    end
-
-    if #dir > 1 and dir:sub(-1) == "/" then
-        dir = dir:sub(1, -2)
-    end
-
-    return dir
-end
-
-local function tempDir()
-	if targetOS == "windows" then
-		local path = process.env.TEMP or
-			process.env.TMP or
-			(process.env.SystemRoot or process.env.windir) .. "\\temp"
-
-		if #path > 1 and path[#path - 1] == "\\" and path[#path - 2] ~= ':' then
-			return path:sub(1, -1)
-		end
-
-		return path
-	end
-
-	return getTempDir() or "/tmp"
-end
+local tempDir = require("utils/tempDir")
 
 --[=[
 	Returns the path to the user's temp directory.
@@ -356,5 +329,51 @@ end
 function dirs.tempDir()
 	return pathfs.Path.from(tempDir())
 end
+
+local createTemp = require("utils/createTemp")
+
+--[=[
+	Creates a temporary directory.
+
+	- `base` (optional): The base directory in which to create the temporary directory. If `nil`, the system's temporary directory is used.
+	- `prefix` (optional): The prefix of the temporary directory name. If `nil`, the default prefix is `.tmp`.
+	- `suffix` (optional): The suffix of the temporary directory name. If `nil`, the default suffix is an empty string.
+	- `randomLength` (optional): The length of the random part of the temporary directory name. If `nil`, the default length is 6.
+
+	Returns a `Path` object representing the temporary directory.
+]=]
+dirs.createTempDir = gt.wrapFn(gt.fn(
+	gt.args(
+		gt.any({ allowNil = true }) :: pathfs.AsPath?,
+		gt.opt(gt.string()),
+		gt.opt(gt.string()),
+		gt.opt(gt.number())
+	),
+	gt.returns(gt.custom(pathfs.Path.is, "Path") :: pathfs.Path)
+), function(base, prefix, suffix, randomLength)
+	return createTemp(true, base, prefix, suffix, randomLength)
+end)
+
+--[=[
+	Creates a temporary file.
+
+	- `base` (optional): The base directory in which to create the temporary file. If `nil`, the system's temporary directory is used.
+	- `prefix` (optional): The prefix of the temporary file name. If `nil`, the default prefix is `.tmp`.
+	- `suffix` (optional): The suffix of the temporary file name. If `nil`, the default suffix is an empty string.
+	- `randomLength` (optional): The length of the random part of the temporary file name. If `nil`, the default length is 6.
+
+	Returns a `Path` object representing the temporary file.
+]=]
+dirs.createTempFile = gt.wrapFn(gt.fn(
+	gt.args(
+		gt.any({ allowNil = true }) :: pathfs.AsPath?,
+		gt.opt(gt.string()),
+		gt.opt(gt.string()),
+		gt.opt(gt.number())
+	),
+	gt.returns(gt.custom(pathfs.Path.is, "Path") :: pathfs.Path)
+), function(base, prefix, suffix, randomLength)
+	return createTemp(false, base, prefix, suffix, randomLength)
+end)
 
 return dirs

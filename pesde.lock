@@ -1,10 +1,28 @@
 name = "jiwonz/dirs"
-version = "0.1.0"
+version = "0.1.2"
 target = "lune"
 
+[graph."corecii/greentea"."0.4.11 lune"]
+direct = ["greentea", { name = "corecii/greentea", version = "^0.4.10" }, "standard"]
+resolved_ty = "standard"
+
+[graph."corecii/greentea"."0.4.11 lune".target]
+environment = "lune"
+lib = "src/init.luau"
+
+[graph."corecii/greentea"."0.4.11 lune".pkg_ref]
+ref_ty = "pesde"
+name = "corecii/greentea"
+version = "0.4.11"
+index_url = "https://github.com/daimond113/pesde-index"
+
+[graph."corecii/greentea"."0.4.11 lune".pkg_ref.target]
+environment = "lune"
+lib = "src/init.luau"
+
 [graph."jiwonz/pathfs"."0.1.0 lune"]
-direct = ["pathfs", { name = "jiwonz/pathfs", version = "^0.1.0" }]
-ty = "standard"
+direct = ["pathfs", { name = "jiwonz/pathfs", version = "^0.1.0" }, "standard"]
+resolved_ty = "standard"
 
 [graph."jiwonz/pathfs"."0.1.0 lune".target]
 environment = "lune"
