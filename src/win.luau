@@ -1,5 +1,5 @@
-local dirsSys = require("sys").windows
-local types = require("types")
+local dirsSys = require("./sys").windows
+local types = require("./types")
 
 local function homeDir() return dirsSys.knownFolderProfile() end
 

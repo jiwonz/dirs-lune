@@ -1,5 +1,5 @@
-local dirsSys = require("sys").linux
-local types = require("types")
+local dirsSys = require("./sys").linux
+local types = require("./types")
 local env = require("@lune/process").env
 
 local function andThen<A, T>(a: A, fn: (A) -> (T), orElse: (() -> (T))?): T?

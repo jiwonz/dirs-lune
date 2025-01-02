@@ -1,5 +1,5 @@
-local dirsSys = require("sys").neitherWindowsNorUnix
-local types = require("types")
+local dirsSys = require("./sys").neitherWindowsNorUnix
+local types = require("./types")
 local pathfs = require("../lune_packages/pathfs")
 
 local function homeDir() return dirsSys.homeDir() end

@@ -1,7 +1,7 @@
 -- Implementation based on https://github.com/Stebalien/tempfile/blob/6e995724c10bc9c5f524df2575c8f3fe1a7df875/src/util.rs
 
 local pathfs = require("../../lune_packages/pathfs")
-local tempDir = require("tempDir")
+local tempDir = require("./tempDir")
 
 local NUM_RETRIES = bit32.lshift(1, 31)
 local NUM_RAND_CHARS = 6

@@ -1,6 +1,6 @@
 local process = require("@lune/process")
 local targetOS = process.os
-local types = require("types")
+local types = require("./types")
 local pathfs = require("../lune_packages/pathfs")
 local gt = require("../lune_packages/greentea")
 
