@@ -14,5 +14,5 @@ lib = "src/init.luau"
 default = "https://github.com/daimond113/pesde-index"
 
 [dependencies]
-pathfs = { name = "jiwonz/pathfs", version = "^0.2.0" }
+pathfs = { name = "jiwonz/pathfs", version = "^0.2.1" }
 greentea = { name = "corecii/greentea", version = "^0.4.10" }
