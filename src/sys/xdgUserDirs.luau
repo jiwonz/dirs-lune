@@ -1,4 +1,6 @@
 local pathfs = require("../../lune_packages/pathfs")
+local fs = pathfs.fs
+
 local xdgUserDirs = {}
 
 local function splitOnce(bytes: string, separator: string): (string?, string?)
@@ -104,12 +106,12 @@ local function parseUserDirs(homeDir: pathfs.Path, userDir: string?, bytes: stri
 end
 
 function xdgUserDirs.all(homeDirPath: pathfs.Path, userDirFilePath: pathfs.Path): { [string]: pathfs.Path }
-	local bytes = pathfs.readFile(userDirFilePath) or ""
+	local bytes = fs.readFile(userDirFilePath) or ""
 	return parseUserDirs(homeDirPath, nil, bytes)
 end
 
 function xdgUserDirs.single(homeDirPath: pathfs.Path, userDirFilePath: pathfs.Path, userDirName: string): { [string]: pathfs.Path }
-	local bytes = pathfs.readFile(userDirFilePath) or ""
+	local bytes = fs.readFile(userDirFilePath) or ""
 	return parseUserDirs(homeDirPath, userDirName, bytes)
 end
 

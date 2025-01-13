@@ -1,6 +1,7 @@
 -- Implementation based on https://github.com/Stebalien/tempfile/blob/6e995724c10bc9c5f524df2575c8f3fe1a7df875/src/util.rs
 
 local pathfs = require("../../lune_packages/pathfs")
+local fs = pathfs.fs
 local tempDir = require("./tempDir")
 
 local NUM_RETRIES = bit32.lshift(1, 31)
@@ -31,8 +32,8 @@ return function(isDir: boolean, base: pathfs.AsPath?, prefix: string?, suffix: s
 	local randomLength = randomLength or NUM_RAND_CHARS
 
 	local numRetries = if randomLength ~= 0 then NUM_RETRIES else 1
-	local checkTemp = (if isDir then pathfs.isDir else pathfs.isFile) :: typeof(pathfs.isDir)
-	local writeTemp = (if isDir then pathfs.writeDir else pathfs.writeFile) :: typeof(pathfs.writeDir)
+	local checkTemp = (if isDir then fs.isDir else fs.isFile) :: typeof(fs.isDir)
+	local writeTemp = (if isDir then fs.writeDir else fs.writeFile) :: typeof(fs.writeDir)
 
 	for _ = 1, numRetries do
 		local path = base:join(tmpname(prefix, suffix, randomLength))
