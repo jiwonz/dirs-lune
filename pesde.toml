@@ -4,7 +4,7 @@ description = "A library for lune that provides config/cache/data paths. Heavily
 authors = ["jiwonz"]
 repository = "https://github.com/jiwonz/dirs-lune/"
 license = "MIT"
-includes = ["src", "README.md", "pesde.toml", "LICENSE.md"]
+includes = ["src/**", "README.md", "pesde.toml", "LICENSE"]
 
 [target]
 environment = "lune"
