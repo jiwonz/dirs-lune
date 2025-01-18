@@ -2,4 +2,3 @@ std = "luau"
 
 [lints]
 multiple_statements = "allow"
-shadowing = "allow"
