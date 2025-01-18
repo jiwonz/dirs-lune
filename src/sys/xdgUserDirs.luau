@@ -4,7 +4,7 @@ local fs = pathfs.fs
 local xdgUserDirs = {}
 
 local function splitOnce(bytes: string, separator: string): (string?, string?)
-	local prefix, suffix = bytes:match("(.-)%".. separator .."(.+)")
+	local prefix, suffix = bytes:match("(.-)%" .. separator .. "(.+)")
 	return prefix, suffix
 end
 
@@ -67,7 +67,7 @@ local function parseUserDirs(homeDir: pathfs.Path, userDir: string?, bytes: stri
 		end
 
 		value = trimBlank(value)
-		if startsWith(value, "\"") and endsWith(value, "\"") then
+		if startsWith(value, '"') and endsWith(value, '"') then
 			value = value:sub(2, value:len() - 1)
 		else
 			continue
@@ -110,7 +110,11 @@ function xdgUserDirs.all(homeDirPath: pathfs.Path, userDirFilePath: pathfs.Path)
 	return parseUserDirs(homeDirPath, nil, bytes)
 end
 
-function xdgUserDirs.single(homeDirPath: pathfs.Path, userDirFilePath: pathfs.Path, userDirName: string): { [string]: pathfs.Path }
+function xdgUserDirs.single(
+	homeDirPath: pathfs.Path,
+	userDirFilePath: pathfs.Path,
+	userDirName: string
+): { [string]: pathfs.Path }
 	local bytes = fs.readFile(userDirFilePath) or ""
 	return parseUserDirs(homeDirPath, userDirName, bytes)
 end

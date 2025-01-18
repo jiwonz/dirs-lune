@@ -18,24 +18,38 @@ local function randomAlphanumeric(length: number): string
 end
 
 local function tmpname(prefix: string, suffix: string, randomLength: number): string
-    local buf = table.create(3)
+	local buf = table.create(3)
 	table.insert(buf, prefix)
-    table.insert(buf, randomAlphanumeric(randomLength))
+	table.insert(buf, randomAlphanumeric(randomLength))
 	table.insert(buf, suffix)
 	return table.concat(buf)
 end
 
-return function(isDir: boolean, base: pathfs.AsPath?, prefix: string?, suffix: string?, randomLength: number?): pathfs.Path
+local function writeBlankFile(path: pathfs.AsPath)
+	fs.writeFile(path, "")
+end
+
+return function(
+	isDir: boolean,
+	base: pathfs.AsPath?,
+	prefix: string?,
+	suffix: string?,
+	randomLength: number?
+): pathfs.Path
+	-- selene: allow(shadowing)
 	local base = pathfs.Path.from(base or tempDir())
+	-- selene: allow(shadowing)
 	local prefix = prefix or ".tmp"
+	-- selene: allow(shadowing)
 	local suffix = suffix or ""
+	-- selene: allow(shadowing)
 	local randomLength = randomLength or NUM_RAND_CHARS
 
 	local numRetries = if randomLength ~= 0 then NUM_RETRIES else 1
 	local checkTemp = (if isDir then fs.isDir else fs.isFile) :: typeof(fs.isDir)
-	local writeTemp = (if isDir then fs.writeDir else fs.writeFile) :: typeof(fs.writeDir)
+	local writeTemp = (if isDir then fs.writeDir else writeBlankFile) :: typeof(fs.writeDir)
 
-	for _ = 1, numRetries do
+	for _ = 0, numRetries do
 		local path = base:join(tmpname(prefix, suffix, randomLength))
 		if checkTemp(path) and numRetries > 1 then
 			continue

@@ -26,7 +26,7 @@ end
 if targetOS == "linux" then
 	local dirsSys = {
 		homeDir = homeDir,
-		isAbsolutePath = isAbsolutePath
+		isAbsolutePath = isAbsolutePath,
 	}
 	local xdgUserDirs = require("xdgUserDirs")
 
@@ -55,7 +55,7 @@ end
 if targetOS ~= "windows" and targetOS ~= "linux" then
 	local dirsSys = {
 		homeDir = homeDir,
-		isAbsolutePath = isAbsolutePath
+		isAbsolutePath = isAbsolutePath,
 	}
 	sys.neitherWindowsNorUnix = dirsSys
 end
@@ -63,7 +63,7 @@ end
 if targetOS == "windows" then
 	local dirsSys = {
 		homeDir = homeDir,
-		isAbsolutePath = isAbsolutePath
+		isAbsolutePath = isAbsolutePath,
 	}
 	local KNOWNFOLDERID = require("../win32/KNOWNFOLDERID")
 	local defaultKnownFolderPaths = require("../win32/defaultKnownFolderPaths")

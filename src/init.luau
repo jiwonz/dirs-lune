@@ -4,7 +4,8 @@ local types = require("./types")
 local pathfs = require("../lune_packages/pathfs")
 local gt = require("../lune_packages/greentea")
 
-local sys: types.Sys? = if targetOS == "windows" then require("win")
+local sys: types.Sys? = if targetOS == "windows"
+	then require("win")
 	elseif targetOS == "macos" then require("mac")
 	elseif targetOS == "linux" then require("lin")
 	else nil
@@ -331,6 +332,9 @@ function dirs.tempDir()
 end
 
 local createTemp = require("utils/createTemp")
+local optionalStringType = gt.build(gt.opt(gt.string()))
+local optionalNumberType = gt.build(gt.opt(gt.number()))
+local optionalAsPathType = gt.build(gt.opt(pathfs.gt.AsPath:type()))
 
 --[=[
 	Creates a temporary directory.
@@ -342,17 +346,21 @@ local createTemp = require("utils/createTemp")
 
 	Returns a `Path` object representing the temporary directory.
 ]=]
-dirs.createTempDir = gt.wrapFn(gt.fn(
-	gt.args(
-		gt.any({ allowNil = true }) :: pathfs.AsPath?,
-		gt.opt(gt.string()),
-		gt.opt(gt.string()),
-		gt.opt(gt.number())
-	),
-	gt.returns(gt.custom(pathfs.Path.is, "Path") :: pathfs.Path)
-), function(base, prefix, suffix, randomLength)
-	return createTemp(true, base, prefix, suffix, randomLength)
-end)
+function dirs.createTempDir(
+	base: typeof(optionalAsPathType:type()),
+	prefix: typeof(optionalStringType:type()),
+	suffix: typeof(optionalStringType:type()),
+	randomLength: typeof(optionalNumberType:type())
+): pathfs.Directory
+	optionalAsPathType:assert(base)
+	optionalStringType:assert(prefix)
+	optionalStringType:assert(suffix)
+	optionalNumberType:assert(randomLength)
+
+	return pathfs.Directory.fromExisting(
+		createTemp(true, base, prefix, suffix, randomLength)
+	)
+end
 
 --[=[
 	Creates a temporary file.
@@ -364,16 +372,20 @@ end)
 
 	Returns a `Path` object representing the temporary file.
 ]=]
-dirs.createTempFile = gt.wrapFn(gt.fn(
-	gt.args(
-		gt.any({ allowNil = true }) :: pathfs.AsPath?,
-		gt.opt(gt.string()),
-		gt.opt(gt.string()),
-		gt.opt(gt.number())
-	),
-	gt.returns(gt.custom(pathfs.Path.is, "Path") :: pathfs.Path)
-), function(base, prefix, suffix, randomLength)
-	return createTemp(false, base, prefix, suffix, randomLength)
-end)
+function dirs.createTempFile(
+	base: typeof(optionalAsPathType:type()),
+	prefix: typeof(optionalStringType:type()),
+	suffix: typeof(optionalStringType:type()),
+	randomLength: typeof(optionalNumberType:type())
+): pathfs.File
+	optionalAsPathType:assert(base)
+	optionalStringType:assert(prefix)
+	optionalStringType:assert(suffix)
+	optionalNumberType:assert(randomLength)
+
+	return pathfs.File.fromExisting(
+		createTemp(false, base, prefix, suffix, randomLength)
+	)
+end
 
 return dirs
