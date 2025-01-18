@@ -357,9 +357,7 @@ function dirs.createTempDir(
 	optionalStringType:assert(suffix)
 	optionalNumberType:assert(randomLength)
 
-	return pathfs.Directory.fromExisting(
-		createTemp(true, base, prefix, suffix, randomLength)
-	)
+	return pathfs.Directory.fromExisting(createTemp(true, base, prefix, suffix, randomLength))
 end
 
 --[=[
@@ -383,9 +381,7 @@ function dirs.createTempFile(
 	optionalStringType:assert(suffix)
 	optionalNumberType:assert(randomLength)
 
-	return pathfs.File.fromExisting(
-		createTemp(false, base, prefix, suffix, randomLength)
-	)
+	return pathfs.File.fromExisting(createTemp(false, base, prefix, suffix, randomLength))
 end
 
 return dirs
