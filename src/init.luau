@@ -334,7 +334,7 @@ end
 local createTemp = require("utils/createTemp")
 local optionalStringType = gt.build(gt.opt(gt.string()))
 local optionalNumberType = gt.build(gt.opt(gt.number()))
-local optionalAsPathType = gt.build(gt.opt(pathfs.gt.AsPath:type()))
+local optionalAsPathType = gt.build(gt.opt(pathfs.types.AsPath:type()))
 
 --[=[
 	Creates a temporary directory.
