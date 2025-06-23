@@ -28,7 +28,7 @@ if targetOS == "linux" then
 		homeDir = homeDir,
 		isAbsolutePath = isAbsolutePath,
 	}
-	local xdgUserDirs = require("xdgUserDirs")
+	local xdgUserDirs = require("./xdgUserDirs")
 
 	local function userDirFile(home: pathfs.Path): pathfs.Path
 		return (isAbsolutePath(env.XDG_CONFIG_HOME) or home:join(".config")):join("user-dirs.dirs")
@@ -88,7 +88,7 @@ $ptr = [intptr]::Zero\
 [void]$GetType::SHGetKnownFolderPath([Ref]"{guid}", 0, 0, [ref]$ptr)\
 [System.Runtime.InteropServices.Marshal]::PtrToStringUni($ptr)\
 [System.Runtime.InteropServices.Marshal]::FreeCoTaskMem($ptr)`
-			local result = process.spawn("powershell", { "-Command", script })
+			local result = process.exec("powershell", { "-Command", script })
 			if result.ok then
 				return result.stdout:split("\r\n")[1]
 			else

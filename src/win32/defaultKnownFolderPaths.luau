@@ -1,4 +1,4 @@
-local KNOWNFOLDERID = require("KNOWNFOLDERID")
+local KNOWNFOLDERID = require("./KNOWNFOLDERID")
 
 local defaultKnownFolderPaths = {} :: { [string]: { string } | string }
 
