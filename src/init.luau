@@ -322,7 +322,7 @@ function dirs.videoDir(): pathfs.Path?
 	return sys.videoDir()
 end
 
-local tempDir = require("utils/tempDir")
+local tempDir = require("./utils/tempDir")
 
 --[=[
 	Returns the path to the user's temp directory.
@@ -331,7 +331,7 @@ function dirs.tempDir()
 	return pathfs.Path.from(tempDir())
 end
 
-local createTemp = require("utils/createTemp")
+local createTemp = require("./utils/createTemp")
 local optionalStringType = gt.build(gt.opt(gt.string()))
 local optionalNumberType = gt.build(gt.opt(gt.number()))
 local optionalAsPathType = gt.build(gt.opt(pathfs.types.AsPath:type()))

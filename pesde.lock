@@ -2,7 +2,7 @@
 # It is not intended for manual editing.
 format = 2
 name = "jiwonz/dirs"
-version = "0.5.0"
+version = "0.5.1"
 target = "lune"
 
 [graph."corecii/greentea@0.4.11 lune"]
