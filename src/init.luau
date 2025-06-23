@@ -5,9 +5,9 @@ local pathfs = require("../lune_packages/pathfs")
 local gt = require("../lune_packages/greentea")
 
 local sys: types.Sys? = if targetOS == "windows"
-	then require("win")
-	elseif targetOS == "macos" then require("mac")
-	elseif targetOS == "linux" then require("lin")
+	then require("./win")
+	elseif targetOS == "macos" then require("./mac")
+	elseif targetOS == "linux" then require("./lin")
 	else nil
 
 if not sys then
