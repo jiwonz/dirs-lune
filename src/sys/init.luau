@@ -1,7 +1,7 @@
 local process = require("@lune/process")
 local env = process.env
 local targetOS = process.os
-local pathfs = require("../../lune_packages/pathfs")
+local pathfs = require("../lune_packages/pathfs")
 local fs = pathfs.fs
 
 local sys = {}
@@ -28,7 +28,7 @@ if targetOS == "linux" then
 		homeDir = homeDir,
 		isAbsolutePath = isAbsolutePath,
 	}
-	local xdgUserDirs = require("./xdgUserDirs")
+	local xdgUserDirs = require("@self/xdgUserDirs")
 
 	local function userDirFile(home: pathfs.Path): pathfs.Path
 		return (isAbsolutePath(env.XDG_CONFIG_HOME) or home:join(".config")):join("user-dirs.dirs")
@@ -65,9 +65,9 @@ if targetOS == "windows" then
 		homeDir = homeDir,
 		isAbsolutePath = isAbsolutePath,
 	}
-	local KNOWNFOLDERID = require("../win32/KNOWNFOLDERID")
-	local defaultKnownFolderPaths = require("../win32/defaultKnownFolderPaths")
-	local parsePath = require("../win32/parsePath")
+	local KNOWNFOLDERID = require("./win32/KNOWNFOLDERID")
+	local defaultKnownFolderPaths = require("./win32/defaultKnownFolderPaths")
+	local parsePath = require("./win32/parsePath")
 
 	--[=[
 		Due to lack of lune-ffi built-in library, there's no way to call SHGetKnownFolderPath. so we're going to dlopen via powershell temporary.

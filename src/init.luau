@@ -1,13 +1,13 @@
 local process = require("@lune/process")
 local targetOS = process.os
-local types = require("./types")
-local pathfs = require("../lune_packages/pathfs")
-local gt = require("../lune_packages/greentea")
+local types = require("@self/types")
+local pathfs = require("./lune_packages/pathfs")
+local gt = require("./lune_packages/greentea")
 
 local sys: types.Sys? = if targetOS == "windows"
-	then require("./win")
-	elseif targetOS == "macos" then require("./mac")
-	elseif targetOS == "linux" then require("./lin")
+	then require("@self/win")
+	elseif targetOS == "macos" then require("@self/mac")
+	elseif targetOS == "linux" then require("@self/lin")
 	else nil
 
 if not sys then
@@ -322,7 +322,7 @@ function dirs.videoDir(): pathfs.Path?
 	return sys.videoDir()
 end
 
-local tempDir = require("./utils/tempDir")
+local tempDir = require("@self/utils/tempDir")
 
 --[=[
 	Returns the path to the user's temp directory.
@@ -331,7 +331,7 @@ function dirs.tempDir()
 	return pathfs.Path.from(tempDir())
 end
 
-local createTemp = require("./utils/createTemp")
+local createTemp = require("@self/utils/createTemp")
 local optionalStringType = gt.build(gt.opt(gt.string()))
 local optionalNumberType = gt.build(gt.opt(gt.number()))
 local optionalAsPathType = gt.build(gt.opt(pathfs.types.AsPath:type()))

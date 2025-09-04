@@ -11,12 +11,12 @@ environment = "lune"
 lib = "src/init.luau"
 
 [indices]
-default = "https://github.com/daimond113/pesde-index"
+default = "https://github.com/pesde-pkg/index"
 
 [engines]
-lune = "^0.9.0"
-pesde = "^0.7.0-rc.1"
+lune = "^0.10.0"
+pesde = "^0.7.0"
 
 [dependencies]
-pathfs = { name = "jiwonz/pathfs", version = "^0.6.0-rc.6" }
-greentea = { name = "corecii/greentea", version = "^0.4.10" }
+pathfs = { name = "jiwonz/pathfs", version = "^0.6.0" }
+greentea = { name = "abidbmt/greentea", version = "^0.5.1" }
