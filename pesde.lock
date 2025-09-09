@@ -2,7 +2,7 @@
 # It is not intended for manual editing.
 format = 2
 name = "jiwonz/dirs"
-version = "0.5.1"
+version = "0.6.0"
 target = "lune"
 
 [graph."jiwonz/greentea_luau@0.2.0 luau"]

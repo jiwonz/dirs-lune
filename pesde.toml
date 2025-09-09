@@ -1,5 +1,5 @@
 name = "jiwonz/dirs"
-version = "0.5.1"
+version = "0.6.0"
 description = "A library for lune that provides config/cache/data paths. Heavily inspired by dirs-rs"
 authors = ["jiwonz <me@jiwonz.kr>"]
 repository = "https://github.com/jiwonz/dirs-lune/"
@@ -11,7 +11,7 @@ environment = "lune"
 lib = "src/lib.luau"
 
 [indices]
-default = "https://github.com/daimond113/pesde-index"
+default = "https://github.com/jiwonz/dirs-lune"
 
 [engines]
 lune = "^0.10.2"
