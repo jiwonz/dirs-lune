@@ -1,4 +1,3 @@
-local stdio = require("@lune/stdio")
 local fs = require("@lune/fs")
 
 local result: { string } = {
