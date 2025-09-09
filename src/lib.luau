@@ -2,7 +2,7 @@ local process = require("@lune/process")
 local targetOS = process.os
 local types = require("./types")
 local pathfs = require("../lune_packages/pathfs")
-local gt = require("../lune_packages/greentea")
+local gt = require("../luau_packages/greentea")
 
 local sys: types.Sys? = if targetOS == "windows"
 	then require("./win")
@@ -334,7 +334,9 @@ end
 local createTemp = require("./utils/createTemp")
 local optionalStringType = gt.build(gt.opt(gt.string()))
 local optionalNumberType = gt.build(gt.opt(gt.number()))
-local optionalAsPathType = gt.build(gt.opt(pathfs.types.AsPath:type()))
+local optionalAsPathType = gt.build(gt.opt(gt.custom(function(value)
+	return pcall(pathfs.Path.from, value)
+end, "AsPath") :: pathfs.AsPath))
 
 --[=[
 	Creates a temporary directory.
@@ -351,13 +353,13 @@ function dirs.createTempDir(
 	prefix: typeof(optionalStringType:type()),
 	suffix: typeof(optionalStringType:type()),
 	randomLength: typeof(optionalNumberType:type())
-): pathfs.Directory
+): pathfs.DirectoryPath
 	optionalAsPathType:assert(base)
 	optionalStringType:assert(prefix)
 	optionalStringType:assert(suffix)
 	optionalNumberType:assert(randomLength)
 
-	return pathfs.Directory.fromExisting(createTemp(true, base, prefix, suffix, randomLength))
+	return pathfs.DirectoryPath.fromExisting(createTemp(true, base, prefix, suffix, randomLength))
 end
 
 --[=[
@@ -375,13 +377,13 @@ function dirs.createTempFile(
 	prefix: typeof(optionalStringType:type()),
 	suffix: typeof(optionalStringType:type()),
 	randomLength: typeof(optionalNumberType:type())
-): pathfs.File
+): pathfs.FilePath
 	optionalAsPathType:assert(base)
 	optionalStringType:assert(prefix)
 	optionalStringType:assert(suffix)
 	optionalNumberType:assert(randomLength)
 
-	return pathfs.File.fromExisting(createTemp(false, base, prefix, suffix, randomLength))
+	return pathfs.FilePath.fromExisting(createTemp(false, base, prefix, suffix, randomLength))
 end
 
 return dirs

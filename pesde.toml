@@ -8,15 +8,15 @@ includes = ["src/**", "README.md", "pesde.toml", "LICENSE"]
 
 [target]
 environment = "lune"
-lib = "src/init.luau"
+lib = "src/lib.luau"
 
 [indices]
 default = "https://github.com/daimond113/pesde-index"
 
 [engines]
-lune = "^0.9.0"
-pesde = "^0.7.0-rc.1"
+lune = "^0.10.2"
+pesde = "^0.7.1"
 
 [dependencies]
-pathfs = { name = "jiwonz/pathfs", version = "^0.6.0-rc.6" }
-greentea = { name = "corecii/greentea", version = "^0.4.10" }
+pathfs = { name = "jiwonz/pathfs", version = "^0.6.0" }
+greentea = { name = "jiwonz/greentea_luau", version = "^0.2.0", target = "luau" }

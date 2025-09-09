@@ -1,6 +1,4 @@
-local dirs = require("../src")
-local pathfs = require("../lune_packages/pathfs")
-local fs = pathfs.fs
+local dirs = require("../src/lib")
 
 local temp = dirs.createTempFile()
 
