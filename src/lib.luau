@@ -354,10 +354,10 @@ function dirs.createTempDir(
 	suffix: typeof(optionalStringType:type()),
 	randomLength: typeof(optionalNumberType:type())
 ): pathfs.DirectoryPath
-	optionalAsPathType:assert(base)
-	optionalStringType:assert(prefix)
-	optionalStringType:assert(suffix)
-	optionalNumberType:assert(randomLength)
+	assert(optionalAsPathType(base))
+	assert(optionalStringType(prefix))
+	assert(optionalStringType(suffix))
+	assert(optionalNumberType(randomLength))
 
 	return pathfs.DirectoryPath.fromExisting(createTemp(true, base, prefix, suffix, randomLength))
 end
@@ -378,10 +378,10 @@ function dirs.createTempFile(
 	suffix: typeof(optionalStringType:type()),
 	randomLength: typeof(optionalNumberType:type())
 ): pathfs.FilePath
-	optionalAsPathType:assert(base)
-	optionalStringType:assert(prefix)
-	optionalStringType:assert(suffix)
-	optionalNumberType:assert(randomLength)
+	assert(optionalAsPathType(base))
+	assert(optionalStringType(prefix))
+	assert(optionalStringType(suffix))
+	assert(optionalNumberType(randomLength))
 
 	return pathfs.FilePath.fromExisting(createTemp(false, base, prefix, suffix, randomLength))
 end
